@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tree;
 
 /**
  *
@@ -37,10 +36,6 @@ public class Tree {
     
     Node root;
     
-    public Tree(int value){
-        root = new Node(value);
-    }
-    
     // - This is a constructor for just 
     public Tree(){
         root = null;
@@ -57,7 +52,22 @@ public class Tree {
         binSearchTree.root = binSearchTree.insertion(binSearchTree.root, 60);
         binSearchTree.root = binSearchTree.insertion(binSearchTree.root, 80);
         
-        binSearchTree.inOrderTraversal(binSearchTree.root);
+        
+        System.out.println(binSearchTree.depthOfTree(binSearchTree.root));
+    }
+
+    // - Here, we will find the depth of the Binary Search Tree
+    public int depthOfTree(Node node){
+        if(node == null)
+            return 0;
+
+        int left = depthOfTree(node.left);
+        int right = depthOfTree(node.right);
+        
+        if(left > right)
+            return left + 1;
+        else
+            return right + 1;
     }
     
     
@@ -79,7 +89,7 @@ public class Tree {
         return node;
     }
     
-    // - Awesome method
+    // - Here, we will delete the selected Node
     public Node deletion(Node node, int value){
         // - If the tree is empty
         if(node == null)
